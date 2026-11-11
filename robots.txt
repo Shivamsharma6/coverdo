@@ -3,5 +3,5 @@ User-agent: *
 Allow: /
 
 # Host & Sitemaps
-Host: https://coverdo.com
-Sitemap: https://coverdo.com/sitemap.xml
+Host: https://coverdo.in
+Sitemap: https://coverdo.in/sitemap.xml
