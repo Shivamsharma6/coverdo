@@ -35,6 +35,7 @@ Inspired by the dark, high-contrast, modern architectural aesthetic of [growwwte
 
 ## SEO & Hosting Ready
 
+- **Live Production URL:** [https://coverdo.vercel.app](https://coverdo.vercel.app)
 - **Canonical URL:** `https://coverdo.in/`
 - **Schema.org Structured Data:** Rich JSON-LD graphs for `WebSite`, `Organization`, `Service` catalog, and `FAQPage`.
 - **Social Metadata:** OpenGraph (`og:title`, `og:description`, `og:image`, `og:url`) and Twitter Cards (`summary_large_image`).
