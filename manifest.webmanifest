@@ -1,0 +1,16 @@
+{
+  "name": "Coverdo — Ecommerce Operational Execution Partner",
+  "short_name": "Coverdo",
+  "description": "Operational execution partner for Indian D2C and ecommerce brands. Owning the complete outcome between your store, couriers, and messaging.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#021a0d",
+  "theme_color": "#021a0d",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

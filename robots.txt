@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Host & Sitemaps
+Host: https://coverdo.com
+Sitemap: https://coverdo.com/sitemap.xml
