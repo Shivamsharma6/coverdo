@@ -13,35 +13,139 @@
 <body class="home-page">
   <a class="skip" href="#main">Skip to content</a>
   <header class="header wrap">
-    <a class="wordmark" href="#" aria-label="Coverdo home">coverdo<span class="brand-dot">↗</span></a>
-    <nav aria-label="Main navigation"><a href="#services">Services & fees</a><a href="#approach">Delivery process</a><a href="#engagements">Ways to work</a></nav>
+    <div class="header-left">
+      <a class="wordmark" href="#" aria-label="Coverdo home">coverdo<span class="brand-dot">↗</span></a>
+      <div class="header-status-pill">
+        <span class="signal live-pulse" aria-hidden="true"></span>
+        <span>DELHI HQ · CLIENT SPRINT Q2</span>
+      </div>
+    </div>
+    <nav aria-label="Main navigation"><a href="#services">Services &amp; fees</a><a href="#approach">Delivery process</a><a href="#engagements">Ways to work</a></nav>
     <a class="button small dark" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
   </header>
   <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy"><p class="eyebrow"><span class="signal" aria-hidden="true"></span> ECOMMERCE CONSULTING · INDIA</p>
-        <h1 id="hero-title">Grow the brand.<br>Connect the work.<br><em>Keep ownership.</em></h1>
+      <div class="hero-copy">
+        <div class="hero-badge-wrap">
+          <p class="eyebrow"><span class="signal live-pulse" aria-hidden="true"></span> ECOMMERCE LOGISTICS &amp; GROWTH CONSULTING · INDIA</p>
+        </div>
+        <h1 id="hero-title">Grow the brand.<br>Connect the work.<br><em class="hero-accent">Keep ownership.</em></h1>
         <p class="hero-description">Creative and campaigns. Customer journeys and delivery exceptions. Reporting and integrations. Practical ecommerce consulting for the work between your tools and teams.</p>
         <p class="hero-bottom">Choose one service to start. Get a defined scope, visible milestones and a clear handover.</p>
-        <div class="hero-price-strip"><span>One-time scopes from <strong>₹30,000 + GST</strong></span><span>One-channel ads <strong>₹25,000–₹40,000 / month + GST</strong></span><small>Indicative fees. Scope and final price agreed before kickoff.</small></div>
-        <div class="hero-actions"><a class="button orange" href="#starting-points">Choose your first step <span aria-hidden="true">↗</span></a><a class="text-link" href="#approach">See how delivery works <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-price-strip">
+          <div class="spec-ticket">
+            <div class="ticket-cell">
+              <span class="ticket-label">ONE-TIME SCOPES</span>
+              <span class="ticket-value">from <strong>₹30,000</strong> <small>+ GST</small></span>
+            </div>
+            <div class="ticket-divider" aria-hidden="true"></div>
+            <div class="ticket-cell">
+              <span class="ticket-label">MANAGED ADS</span>
+              <span class="ticket-value"><strong>₹25,000–₹40,000</strong> <small>/ mo + GST</small></span>
+            </div>
+          </div>
+          <small class="ticket-subtext">Indicative fees · Scope and acceptance milestones agreed before kickoff</small>
+        </div>
+        <div class="hero-actions">
+          <a class="button orange hero-primary-btn" href="#starting-points">Choose your first step <span aria-hidden="true">↗</span></a>
+          <a class="text-link hero-secondary-link" href="#approach">See how delivery works <span aria-hidden="true">↓</span></a>
+        </div>
       </div>
-      <div class="workboard" aria-label="Delivery exception resolution process">
-        <div class="board-heading"><span class="eyebrow">THE WORK BETWEEN THE TOOLS</span><span class="board-icon" aria-hidden="true">↗</span></div>
-        <div class="board-tabs"><span>01 / DELIVERY EXCEPTION</span><span class="demo-label">RESOLUTION PROCESS</span></div>
+      <div class="workboard" aria-label="Coverdo resolution engine simulator" id="hero-workboard">
+        <div class="board-topbar">
+          <div class="window-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot amber"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="board-system-tag">COVERDO RESOLUTION ENGINE · V2.4</span>
+          <span class="live-telemetry-badge"><span class="signal live-pulse" aria-hidden="true"></span> <span id="hero-clock">15:47 IST</span> · 99.4% SLA</span>
+        </div>
+        <div class="board-scenario-tabs" role="tablist" aria-label="Resolution scenarios">
+          <button type="button" class="scenario-tab active" data-scenario="ndr" role="tab" aria-selected="true"><span class="tab-dot" aria-hidden="true">●</span> 01 / NDR Exception</button>
+          <button type="button" class="scenario-tab" data-scenario="cod" role="tab" aria-selected="false"><span class="tab-dot" aria-hidden="true">●</span> 02 / Fake COD Shield</button>
+          <button type="button" class="scenario-tab" data-scenario="reconcile" role="tab" aria-selected="false"><span class="tab-dot" aria-hidden="true">●</span> 03 / Cash Reconcile</button>
+        </div>
         <div class="flow-line" aria-hidden="true"></div>
-        <div class="flow-step"><span class="flow-number">01</span><div><span class="mini-label">STORE + COURIER</span><h3>Identify the delivery exception</h3><p>Flag the shipment that needs an address clarification.</p></div><span class="status amber">Detect</span></div>
-        <div class="flow-step"><span class="flow-number">02</span><div><span class="mini-label">CUSTOMER CONVERSATION</span><h3>Confirm the address with the customer</h3><p>Capture the clarification against the right shipment.</p></div><span class="status">Clarify</span></div>
-        <div class="flow-step active"><span class="flow-number">03</span><div><span class="mini-label">THE COVERDO HANDOFF</span><h3>A reply becomes a next action.</h3><p>Route instructions. Track carrier acceptance.<br>Escalate to a named owner if unresolved.</p></div><span class="flow-arrow" aria-hidden="true">↗</span></div>
-        <div class="board-receipt"><span class="receipt-icon" aria-hidden="true">✓</span><div><strong>Close the loop with evidence.</strong><p>Carrier acknowledgement and final delivery are separate milestones.</p></div></div>
-        <div class="board-footer"><span>ONE PROCESS. A CLEAR OWNER.</span><span aria-hidden="true">↳</span></div>
+        <div id="flow-steps-mount">
+          <div class="flow-step">
+            <span class="flow-number">01</span>
+            <div>
+              <span class="mini-label" id="step1-tag">STORE + COURIER</span>
+              <h3 id="step1-title">Identify the delivery exception</h3>
+              <p id="step1-desc">Delhivery: Address incomplete · Landmark missing</p>
+            </div>
+            <span class="status amber" id="step1-status">Detect</span>
+          </div>
+          <div class="flow-step">
+            <span class="flow-number">02</span>
+            <div>
+              <span class="mini-label" id="step2-tag">CUSTOMER CONVERSATION</span>
+              <h3 id="step2-title">Confirm the address with the customer</h3>
+              <p id="step2-desc">WhatsApp: "Hi Rohit, driver nearby. Please confirm landmark or gate."</p>
+            </div>
+            <span class="status" id="step2-status">Clarify</span>
+          </div>
+          <div class="flow-step active">
+            <span class="flow-number">03</span>
+            <div>
+              <span class="mini-label" id="step3-tag">THE COVERDO HANDOFF</span>
+              <h3 id="step3-title">A reply becomes a next action.</h3>
+              <p id="step3-desc">Buyer: "Behind Apollo Pharmacy, Gate #2" → Delhivery reattempt confirmed · 4 PM cutoff beat.</p>
+            </div>
+            <span class="flow-arrow" aria-hidden="true">↗</span>
+          </div>
+        </div>
+        <div class="board-receipt">
+          <span class="receipt-icon" aria-hidden="true">✓</span>
+          <div>
+            <strong id="receipt-title">Close the loop with evidence.</strong>
+            <p id="receipt-desc">Carrier acknowledgement and final delivery are separate milestones.</p>
+          </div>
+        </div>
+        <div class="board-footer">
+          <div class="footer-status-pill">
+            <span class="mini-status-led" aria-hidden="true"></span>
+            <span id="board-footer-label">DELHIVERY CUTOFF BEAT · DELIVERED</span>
+          </div>
+          <span class="audit-seal" aria-hidden="true">VERIFIED ↳</span>
+        </div>
       </div>
     </section>
-    <div class="principles wrap"><p><span aria-hidden="true">↗</span> Independently scoped services</p><p><span aria-hidden="true">↗</span> Your accounts. Your data.</p><p><span aria-hidden="true">↗</span> Visible delivery milestones</p><p><span aria-hidden="true">↗</span> Setup or ongoing support</p></div>
+    <div class="principles wrap">
+      <div class="principle-item">
+        <span class="principle-index">01</span>
+        <div>
+          <strong>Independently scoped</strong>
+          <p>Standalone bounded services</p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <span class="principle-index">02</span>
+        <div>
+          <strong>Your accounts &amp; data</strong>
+          <p>You retain full credential ownership</p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <span class="principle-index">03</span>
+        <div>
+          <strong>Visible milestones</strong>
+          <p>Verifiable delivery receipts</p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <span class="principle-index">04</span>
+        <div>
+          <strong>Setup or ongoing</strong>
+          <p>Sprint or continuous ops support</p>
+        </div>
+      </div>
+    </div>
 
     <section class="section wrap starting" id="starting-points" aria-labelledby="starting-title">
       <div class="section-heading"><p class="eyebrow">01 / YOUR STARTING POINT</p><h2 id="starting-title">Which problem<br>looks like your week?</h2><p>Start with the outcome you need. See the fee, scope and delivery process before you prepare an enquiry.</p></div>
-      <div class="starting-grid"><a class="starting-item" href="services/creative-sprint.html"><span class="category-symbol" aria-hidden="true">↗</span><span class="eyebrow">YOU’RE PREPARING THE NEXT LAUNCH</span><h3>You have the offer.<br>Now you need the creative.</h3><p>Turn supplied footage and product assets into a defined creative test for one offer.</p><div class="door-price"><strong>₹33,000</strong><span>+ GST · indicative one-time sprint</span><small>10–15 working days after approved inputs; schedule confirmed in your proposal</small></div><span class="text-link">View scope & delivery <span aria-hidden="true">↗</span></span></a><a class="starting-item" href="services/delivery-exceptions.html"><span class="category-symbol" aria-hidden="true">↗</span><span class="eyebrow">CUSTOMERS ARE GETTING STUCK</span><h3>A failed delivery needs<br>more than another message.</h3><p>Connect the customer reply, carrier acknowledgement and a named escalation owner.</p><div class="door-price"><strong>₹50,000–₹90,000</strong><span>+ GST · indicative setup</span><small>One store · one logistics connector · three NDR reasons</small></div><span class="text-link">View scope & delivery <span aria-hidden="true">↗</span></span></a><a class="starting-item" href="services/contribution-reporting.html"><span class="category-symbol" aria-hidden="true">↗</span><span class="eyebrow">THE NUMBERS DON’T AGREE</span><h3>Sales look healthy.<br>Contribution is harder to see.</h3><p>Bring the agreed sources into one reconciled order model and a daily decision view.</p><div class="door-price"><strong>₹60,000–₹1,00,000</strong><span>+ GST · indicative setup</span><small>Up to four sources · definitions · daily refresh</small></div><span class="text-link">View scope & delivery <span aria-hidden="true">↗</span></span></a></div>
+      <div class="starting-grid"><a class="starting-item" href="services/creative-sprint.html"><div class="card-badge-row"><span class="spec-id">SPEC 01 // ACQUIRE</span><span class="duration-badge">10–15 WORKING DAYS</span></div><span class="category-symbol" aria-hidden="true">↗</span><span class="eyebrow">YOU’RE PREPARING THE NEXT LAUNCH</span><h3>You have the offer.<br>Now you need the creative.</h3><p>Turn supplied footage and product assets into a defined creative test for one offer.</p><div class="door-price"><strong>₹33,000</strong><span>+ GST · indicative one-time sprint</span><small>10–15 working days after approved inputs; schedule confirmed in your proposal</small></div><span class="text-link">View scope & delivery <span aria-hidden="true">↗</span></span></a><a class="starting-item" href="services/delivery-exceptions.html"><div class="card-badge-row"><span class="spec-id">SPEC 02 // LOGISTICS</span><span class="duration-badge">3 NDR REASONS</span></div><span class="category-symbol" aria-hidden="true">↗</span><span class="eyebrow">CUSTOMERS ARE GETTING STUCK</span><h3>A failed delivery needs<br>more than another message.</h3><p>Connect the customer reply, carrier acknowledgement and a named escalation owner.</p><div class="door-price"><strong>₹50,000–₹90,000</strong><span>+ GST · indicative setup</span><small>One store · one logistics connector · three NDR reasons</small></div><span class="text-link">View scope & delivery <span aria-hidden="true">↗</span></span></a><a class="starting-item" href="services/contribution-reporting.html"><div class="card-badge-row"><span class="spec-id">SPEC 03 // INTELLIGENCE</span><span class="duration-badge">DAILY RECONCILED</span></div><span class="category-symbol" aria-hidden="true">↗</span><span class="eyebrow">THE NUMBERS DON’T AGREE</span><h3>Sales look healthy.<br>Contribution is harder to see.</h3><p>Bring the agreed sources into one reconciled order model and a daily decision view.</p><div class="door-price"><strong>₹60,000–₹1,00,000</strong><span>+ GST · indicative setup</span><small>Up to four sources · definitions · daily refresh</small></div><span class="text-link">View scope & delivery <span aria-hidden="true">↗</span></span></a></div>
       <p class="starting-alternative">Need a different first step? <a href="#services">Explore all 12 services ↗</a></p>
     </section>
 
@@ -168,7 +272,52 @@
           <label>Eligible opportunities per month<input name="eligible" type="number" min="0" max="100000000" value="3000" required><small>Cases that can actually be acted on.</small></label>
         </div></form>
         <div id="calculator-error" role="status" class="calc-error" hidden></div>
-        <div id="calculator-results" aria-live="polite" aria-atomic="true"><div class="result-primary"><div><span class="mini-label">MONTHLY EQUIVALENT COST</span><strong id="monthly-result">₹40,000</strong></div><span class="result-arrow" aria-hidden="true">↗</span></div><div class="result-grid"><div><span id="break-even-result">89</span><p>additional outcomes / month<br>to break even</p></div><div><span id="double-result">178</span><p>additional outcomes / month<br>for a 2× cost hurdle</p></div></div><p class="calc-context" id="calc-context">Break-even needs 2.97% of the 3,000 eligible opportunities. Total cost over 6 months: ₹2,40,000.</p></div>
+        <div id="calculator-results" aria-live="polite" aria-atomic="true">
+          <div class="result-primary">
+            <div>
+              <span class="mini-label">MONTHLY EQUIVALENT COST</span>
+              <strong id="monthly-result">₹40,000</strong>
+            </div>
+            <span class="result-arrow" aria-hidden="true">↗</span>
+          </div>
+
+          <!-- Dual-Bar Capital Outcome Visualizer -->
+          <div class="calc-outcome-visualizer" aria-label="Capital outcome comparison">
+            <div class="outcome-header">
+              <span class="mini-label">CAPITAL OUTCOME COMPARISON</span>
+              <div class="outcome-badge-strip">
+                <span class="roi-chip" id="roi-chip">4.2× ROI MULTIPLE</span>
+                <span class="hurdle-badge" id="hurdle-badge">✓ 2.0× CONSERVATIVE HURDLE CLEARED</span>
+              </div>
+            </div>
+            <div class="outcome-bars">
+              <div class="outcome-bar-group">
+                <div class="bar-meta">
+                  <span>Status Quo Margin Bleed</span>
+                  <strong id="bleed-amount">₹1,26,000/mo</strong>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill bleed-fill" id="bleed-fill" style="width: 78%;"></div>
+                </div>
+              </div>
+              <div class="outcome-bar-group">
+                <div class="bar-meta">
+                  <span>Preserved Margin with Coverdo</span>
+                  <strong class="highlight" id="gain-amount">₹42,000/mo net gain</strong>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill gain-fill" id="gain-fill" style="width: 55%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <div><span id="break-even-result">89</span><p>additional outcomes / month<br>to break even</p></div>
+            <div><span id="double-result">178</span><p>additional outcomes / month<br>for a 2× cost hurdle</p></div>
+          </div>
+          <p class="calc-context" id="calc-context">Break-even needs 2.97% of the 3,000 eligible opportunities. Total cost over 6 months: ₹2,40,000.</p>
+        </div>
         <p class="calculator-footnote">Adjust the inputs to match your business, including applicable taxes and external costs. Results show the cost hurdle for your inputs. Actual returns depend on the outcomes achieved.</p>
         <noscript><p>Enable JavaScript to calculate break-even using your business costs, contribution margin and eligible opportunities.</p></noscript>
       </div>
@@ -187,7 +336,33 @@
       <div class="enquiry-panel"><form id="enquiry-form">
         <label>Your name<input name="name" autocomplete="name" maxlength="120" placeholder="How should we address you?" required></label>
         <div class="input-grid"><label>Work email<input name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@yourbrand.com" required></label><label>Brand / website<input name="website" maxlength="200" placeholder="yourbrand.com" required></label></div>
+        <div class="scope-pill-selector">
+          <span class="mini-label">QUICK SCOPE SELECTOR</span>
+          <div class="scope-pills" role="group" aria-label="Quick scope selection">
+            <button type="button" class="scope-pill" data-pill="delivery-exceptions"><span class="pill-icon">⚡</span> NDR Exceptions</button>
+            <button type="button" class="scope-pill" data-pill="checkout-recovery"><span class="pill-icon">🛒</span> Checkout Recovery</button>
+            <button type="button" class="scope-pill" data-pill="contribution-reporting"><span class="pill-icon">📊</span> Contribution P&amp;L</button>
+            <button type="button" class="scope-pill" data-pill="creative-sprint"><span class="pill-icon">🎬</span> Creative Sprint</button>
+            <button type="button" class="scope-pill" data-pill="ads-management"><span class="pill-icon">🎯</span> Ads Channel</button>
+            <button type="button" class="scope-pill active" data-pill="unsure"><span class="pill-icon">✨</span> Help me choose</button>
+          </div>
+        </div>
         <label>Where would you like to start?<select name="service" id="enquiry-service"><option value="unsure">Help me identify the right scope</option><option value="delivery-exceptions">Delivery Exception Resolution</option><option value="checkout-recovery">Checkout Conversation Recovery</option><option value="support-assistant">Support Resolution Assistant</option><option value="contribution-reporting">Operational Contribution Reporting</option><option value="creative-sprint">Creative Launch Sprint</option><option value="ads-management">One-channel Ads Management</option><option value="landing-page">Product / Offer Landing Page</option><option value="retention">Retention Journey</option><option value="loyalty">Loyalty Programme</option><option value="integration">One-process Integration</option><option value="voice-agent">One-purpose Voice Agent</option><option value="feedback">Feedback-to-Resolution</option><option value="discovery">A different workflow / discovery</option></select></label>
+        <div class="scope-preview-card" id="scope-preview-card">
+          <div class="scope-preview-top">
+            <span class="eyebrow" id="scope-preview-eyebrow">FIRST STEP PROPOSAL PREVIEW</span>
+            <span class="scope-turnaround-badge" id="scope-preview-sla">Turnaround: 5–10 days</span>
+          </div>
+          <ul class="scope-deliverables-list" id="scope-deliverables">
+            <li>Diagnostic audit of your current store setup &amp; operational gap</li>
+            <li>Recommended bounded scope with fixed milestones &amp; deliverables</li>
+            <li>Indicative cost and payback model agreed before any agreement</li>
+          </ul>
+          <div class="scope-preview-footer">
+            <span id="scope-preview-fee">Indicative: Discussed during initial scoping</span>
+            <span class="scope-tag" aria-hidden="true">Clear Deliverables ↗</span>
+          </div>
+        </div>
         <label>What needs to work better?<textarea name="problem" rows="3" maxlength="2000" placeholder="The problem, current tools and the outcome you need…" required></textarea></label>
         <button class="button dark" type="submit" id="enquiry-submit-btn">Send enquiry <span aria-hidden="true">↗</span></button><p class="form-disclosure">Submitted directly to our founding desk at growth@coverdo.in. We respond within 30 minutes during business hours.</p>
       </form><div id="enquiry-draft" hidden><p class="eyebrow">YOUR BRIEF IS READY</p><h3>Review it, then send.</h3><pre id="draft-preview"></pre><div class="draft-actions"><a class="button dark" id="draft-email" href="mailto:growth@coverdo.in">Open email draft ↗</a><button type="button" id="copy-brief" class="button outline">Copy brief</button><button type="button" id="edit-brief" class="text-link">Edit brief</button></div><p id="draft-status" role="status">Not sent. Use your email app, or copy this brief and email growth@coverdo.in.</p></div><noscript><p>Email your brief directly to <a href="mailto:growth@coverdo.in">growth@coverdo.in</a>. The enquiry composer requires JavaScript.</p></noscript></div>
