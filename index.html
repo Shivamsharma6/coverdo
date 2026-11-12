@@ -1121,20 +1121,26 @@
             <div class="gt-sla-callout">
               <span class="gt-sla-title">Direct founder evaluation guarantee</span>
               <span class="gt-sla-desc">
-                Every submission is audited against your live website, shipping policies, and courier benchmarks within 30 business minutes. No spam calls.
+                Every submission is audited against your live website, shipping policies, and courier benchmarks within 30 business minutes. No spam calls. Prefer direct email? Reach our desk directly at <a href="mailto:growth@coverdo.in" class="gt-inline-email">growth@coverdo.in</a>.
               </span>
             </div>
           </div>
 
-          <form id="intake-form" class="gt-intake-form" novalidate>
+          <form id="intake-form" class="gt-intake-form" action="https://formsubmit.co/growth@coverdo.in" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="[Coverdo Evaluation] New Store Review Request">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="_next" value="https://coverdo.vercel.app/#intake">
+
             <div class="gt-form-group">
               <label for="brand-domain">Store domain or brand website</label>
-              <input type="text" id="brand-domain" class="gt-form-input" placeholder="e.g. brandname.com" required>
+              <input type="text" id="brand-domain" name="Store Domain" class="gt-form-input" placeholder="e.g. brandname.com" required>
             </div>
 
             <div class="gt-form-group">
               <label for="user-role">Your role</label>
-              <select id="user-role" class="gt-select" required>
+              <select id="user-role" name="User Role" class="gt-select" required>
                 <option value="founder">Founder / Operator</option>
                 <option value="ecommerce_head">Head of Ecommerce</option>
                 <option value="ops_lead">Operations / Logistics Lead</option>
@@ -1144,7 +1150,7 @@
 
             <div class="gt-form-group">
               <label for="order-volume">Monthly dispatched orders</label>
-              <select id="order-volume" class="gt-select" required>
+              <select id="order-volume" name="Monthly Orders" class="gt-select" required>
                 <option value="under_1000">Under 1,000 orders / mo</option>
                 <option value="1000_5000" selected>1,000 – 5,000 orders / mo</option>
                 <option value="5000_15000">5,000 – 15,000 orders / mo</option>
@@ -1154,7 +1160,7 @@
 
             <div class="gt-form-group">
               <label for="business-contact">Business WhatsApp or email</label>
-              <input type="text" id="business-contact" class="gt-form-input" placeholder="founder@brand.com or +91 98..." required>
+              <input type="text" id="business-contact" name="Business Contact" class="gt-form-input" placeholder="founder@brand.com or +91 98..." required>
             </div>
 
             <button type="submit" class="gt-btn gt-btn--primary gt-form-btn">
@@ -1179,6 +1185,9 @@
           <p>
             Operational execution partner for Indian direct-to-consumer ecommerce brands. Owning the complete outcome between disconnected software tools and fulfillment pipelines.
           </p>
+          <div class="gt-footer-contact">
+            Direct desk: <a href="mailto:growth@coverdo.in">growth@coverdo.in</a>
+          </div>
         </div>
 
         <div class="gt-footer-col">

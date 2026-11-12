@@ -245,14 +245,19 @@ function initIntakeForm() {
 
   if (!form || !responseMsg) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const domain = document.getElementById('brand-domain').value.trim();
-    const role = document.getElementById('user-role').value;
-    const volume = document.getElementById('order-volume').value;
-    const contact = document.getElementById('business-contact').value.trim();
+    const domainInput = document.getElementById('brand-domain');
+    const roleInput = document.getElementById('user-role');
+    const volumeInput = document.getElementById('order-volume');
+    const contactInput = document.getElementById('business-contact');
     const submitBtn = form.querySelector('button[type="submit"]');
+
+    const domain = domainInput ? domainInput.value.trim() : '';
+    const role = roleInput ? roleInput.value : '';
+    const volume = volumeInput ? volumeInput.value : '';
+    const contact = contactInput ? contactInput.value.trim() : '';
 
     if (!domain || !contact) {
       responseMsg.className = 'form-response-msg error';
@@ -263,22 +268,93 @@ function initIntakeForm() {
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Verifying store economics...';
+      submitBtn.textContent = 'Transmitting to growth@coverdo.in...';
     }
 
-    setTimeout(() => {
-      form.reset();
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Request Store Evaluation';
-      }
+    const payload = {
+      domain,
+      role,
+      volume,
+      contact,
+      _subject: `[Coverdo Evaluation] ${domain} (${volume})`,
+      'Store Domain': domain,
+      'User Role': role,
+      'Monthly Orders': volume,
+      'Business Contact': contact
+    };
 
+    if (contact.includes('@')) {
+      payload._replyto = contact;
+    }
+
+    let dispatched = false;
+
+    // 1. Try first-party Vercel serverless API endpoint
+    try {
+      const apiRes = await fetch('/api/evaluation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (apiRes.ok) {
+        dispatched = true;
+      }
+    } catch (apiErr) {
+      console.warn('API route /api/evaluation unavailable, attempting direct dispatch', apiErr);
+    }
+
+    // 2. Fall back directly to FormSubmit AJAX if needed
+    if (!dispatched) {
+      try {
+        const fsRes = await fetch('https://formsubmit.co/ajax/growth@coverdo.in', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (fsRes.ok) {
+          dispatched = true;
+        }
+      } catch (fsErr) {
+        console.warn('Direct FormSubmit dispatch error:', fsErr);
+      }
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Request Store Evaluation';
+    }
+
+    if (dispatched) {
+      form.reset();
       responseMsg.className = 'form-response-msg success';
-      responseMsg.innerHTML = '<strong>Evaluation request logged.</strong> Our founding operator will review <code>' +
-        escapeHtml(domain) + '</code> against live courier metrics and respond to <code>' +
+      responseMsg.innerHTML = '<strong>Evaluation request dispatched to <code>growth@coverdo.in</code>.</strong> ' +
+        'Our founding operator will review <code>' + escapeHtml(domain) + '</code> against live courier metrics and respond to <code>' +
         escapeHtml(contact) + '</code> within 30 business minutes.';
       responseMsg.hidden = false;
-    }, 600);
+    } else {
+      // 3. Fallback: Provide direct one-click mailto
+      const mailtoSubject = encodeURIComponent('[Coverdo Evaluation] ' + domain);
+      const mailtoBody = encodeURIComponent(
+        `Brand Domain: ${domain}\n` +
+        `Role: ${role}\n` +
+        `Monthly Dispatched Orders: ${volume}\n` +
+        `Business Contact: ${contact}\n\n` +
+        `Submitted via coverdo.in intake form`
+      );
+      const mailtoUrl = `mailto:growth@coverdo.in?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+      responseMsg.className = 'form-response-msg error';
+      responseMsg.innerHTML = 'Automated transmission paused. <a href="' + mailtoUrl + '" style="color:var(--accent);text-decoration:underline;font-weight:700;">Click here to send details directly to growth@coverdo.in</a>.';
+      responseMsg.hidden = false;
+    }
   });
 }
 

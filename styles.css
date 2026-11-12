@@ -1779,6 +1779,17 @@ img, video {
   color: var(--ink-muted);
 }
 
+.gt-inline-email {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.gt-inline-email:hover {
+  color: var(--ink);
+}
+
 /* Form */
 .gt-intake-form {
   background: var(--bg-page);
@@ -1874,6 +1885,22 @@ img, video {
   color: var(--ink-muted);
   max-width: 380px;
   margin-top: 12px;
+}
+
+.gt-footer-contact {
+  margin-top: 14px;
+  font-size: var(--step-caption);
+  color: var(--ink-muted);
+}
+
+.gt-footer-contact a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.gt-footer-contact a:hover {
+  text-decoration: underline;
 }
 
 .gt-footer-col h4 {
