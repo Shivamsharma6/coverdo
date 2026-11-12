@@ -288,6 +288,7 @@ function initIntakeForm() {
     }
 
     let dispatched = false;
+    let activationPending = false;
 
     // 1. Try first-party Vercel serverless API endpoint
     try {
@@ -300,15 +301,19 @@ function initIntakeForm() {
         body: JSON.stringify(payload)
       });
 
-      if (apiRes.ok) {
+      const apiData = await apiRes.json().catch(() => ({}));
+
+      if (apiRes.ok && apiData.success) {
         dispatched = true;
+      } else if (apiData.activationRequired) {
+        activationPending = true;
       }
     } catch (apiErr) {
       console.warn('API route /api/evaluation unavailable, attempting direct dispatch', apiErr);
     }
 
-    // 2. Fall back directly to FormSubmit AJAX if needed
-    if (!dispatched) {
+    // 2. Fall back directly to FormSubmit AJAX if needed and not already known pending
+    if (!dispatched && !activationPending) {
       try {
         const fsRes = await fetch('https://formsubmit.co/ajax/growth@coverdo.in', {
           method: 'POST',
@@ -319,8 +324,11 @@ function initIntakeForm() {
           body: JSON.stringify(payload)
         });
 
-        if (fsRes.ok) {
+        const fsData = await fsRes.json().catch(() => ({}));
+        if (fsRes.ok && (fsData.success === true || fsData.success === 'true')) {
           dispatched = true;
+        } else if ((fsData.message || '').toLowerCase().includes('activation')) {
+          activationPending = true;
         }
       } catch (fsErr) {
         console.warn('Direct FormSubmit dispatch error:', fsErr);
@@ -332,6 +340,16 @@ function initIntakeForm() {
       submitBtn.textContent = 'Request Store Evaluation';
     }
 
+    const mailtoSubject = encodeURIComponent('[Coverdo Evaluation] ' + domain);
+    const mailtoBody = encodeURIComponent(
+      `Brand Domain: ${domain}\n` +
+      `Role: ${role}\n` +
+      `Monthly Dispatched Orders: ${volume}\n` +
+      `Business Contact: ${contact}\n\n` +
+      `Submitted via coverdo.in intake form`
+    );
+    const mailtoUrl = `mailto:growth@coverdo.in?subject=${mailtoSubject}&body=${mailtoBody}`;
+
     if (dispatched) {
       form.reset();
       responseMsg.className = 'form-response-msg success';
@@ -339,18 +357,14 @@ function initIntakeForm() {
         'Our founding operator will review <code>' + escapeHtml(domain) + '</code> against live courier metrics and respond to <code>' +
         escapeHtml(contact) + '</code> within 30 business minutes.';
       responseMsg.hidden = false;
+    } else if (activationPending) {
+      responseMsg.className = 'form-response-msg error';
+      responseMsg.innerHTML = '<strong>One-Time Activation Required:</strong> FormSubmit sent an activation link to <code>growth@coverdo.in</code>. ' +
+        'Please check your inbox (and <strong>Spam / Junk</strong> folder) for an email from <code>submissions@formsubmit.co</code> and click <em>"Activate Form"</em>. ' +
+        '<div style="margin-top:8px;"><a href="' + mailtoUrl + '" style="color:var(--accent);text-decoration:underline;font-weight:700;">Click here to send details directly via email</a></div>';
+      responseMsg.hidden = false;
     } else {
       // 3. Fallback: Provide direct one-click mailto
-      const mailtoSubject = encodeURIComponent('[Coverdo Evaluation] ' + domain);
-      const mailtoBody = encodeURIComponent(
-        `Brand Domain: ${domain}\n` +
-        `Role: ${role}\n` +
-        `Monthly Dispatched Orders: ${volume}\n` +
-        `Business Contact: ${contact}\n\n` +
-        `Submitted via coverdo.in intake form`
-      );
-      const mailtoUrl = `mailto:growth@coverdo.in?subject=${mailtoSubject}&body=${mailtoBody}`;
-
       responseMsg.className = 'form-response-msg error';
       responseMsg.innerHTML = 'Automated transmission paused. <a href="' + mailtoUrl + '" style="color:var(--accent);text-decoration:underline;font-weight:700;">Click here to send details directly to growth@coverdo.in</a>.';
       responseMsg.hidden = false;

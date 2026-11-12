@@ -1,0 +1,24 @@
+{
+  "name": "coverdo",
+  "version": "1.0.0",
+  "description": "> Operational execution partner for Indian D2C and ecommerce brands. Owning the outcome between your store, couriers, and messaging.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shivamsharma6/coverdo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shivamsharma6/coverdo/issues"
+  },
+  "homepage": "https://github.com/Shivamsharma6/coverdo#readme",
+  "dependencies": {
+    "nodemailer": "^10.5.0"
+  }
+}

@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Dependencies
+node_modules/
+
 # Tooling / Testing caches & inspect outputs
 .taste-skill/
 .vercel
