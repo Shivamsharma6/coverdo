@@ -103,23 +103,30 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify(payload)
     });
 
-    const fsData = await fsRes.json().catch(() => ({}));
+    const fsText = await fsRes.text().catch(() => '');
+    let fsData = {};
+    try {
+      fsData = JSON.parse(fsText);
+    } catch {
+      fsData = { raw: fsText };
+    }
 
-    // FormSubmit returns {"success":"false","message":"This form needs Activation..."} if unactivated
-    if (fsData.success === false || fsData.success === 'false') {
-      const isActivation = (fsData.message || '').toLowerCase().includes('activation');
+    // Only report success if FormSubmit explicitly returned success: true or success: "true"
+    if (fsData.success === true || fsData.success === 'true') {
       return res.status(200).json({
-        success: false,
-        activationRequired: isActivation,
-        message: fsData.message || 'FormSubmit activation required',
+        success: true,
+        method: 'formsubmit',
+        message: 'Evaluation request dispatched to growth@coverdo.in',
         details: fsData
       });
     }
 
+    const isActivation = (fsData.message || fsText).toLowerCase().includes('activation');
+
     return res.status(200).json({
-      success: true,
-      method: 'formsubmit',
-      message: 'Evaluation request dispatched to growth@coverdo.in',
+      success: false,
+      activationRequired: isActivation,
+      message: fsData.message || (isActivation ? 'FormSubmit activation required.' : 'FormSubmit relay error. Please configure SMTP_PASS in Vercel or use direct mailto.'),
       details: fsData
     });
   } catch (error) {
