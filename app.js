@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initEngineConsole();
   initCalculator();
   initStageSelector();
   initIntakeForm();
@@ -166,6 +167,34 @@ function initCalculator() {
       outNetBenefit.className = 'gt-card-val nums val-negative';
     }
 
+    // Dynamic Capital ROI Visualizer update
+    const chartBleedVal = document.getElementById('chart-bleed-val');
+    const chartGainVal = document.getElementById('chart-gain-val');
+    const chartBleedBar = document.getElementById('chart-bleed-bar');
+    const chartGainBar = document.getElementById('chart-gain-bar');
+    const roiStatusPill = document.getElementById('roi-status-pill');
+
+    const estimatedBleed = Math.round(eligibleUnits * 160 + (orders * 0.05 * 120));
+    if (chartBleedVal) chartBleedVal.textContent = '₹' + estimatedBleed.toLocaleString('en-IN') + '/mo';
+    if (chartGainVal) {
+      chartGainVal.textContent = (netBenefit >= 0 ? '+₹' : '-₹') + Math.abs(netBenefit).toLocaleString('en-IN') + '/mo';
+      chartGainVal.className = netBenefit >= 0 ? 'nums val-accent' : 'nums val-negative';
+    }
+
+    const maxVal = Math.max(estimatedBleed, Math.abs(netBenefit), 1);
+    if (chartBleedBar) chartBleedBar.style.width = Math.min(100, Math.max(15, Math.round((estimatedBleed / maxVal) * 90))) + '%';
+    if (chartGainBar) chartGainBar.style.width = Math.min(100, Math.max(15, Math.round((Math.max(0, netBenefit) / maxVal) * 95))) + '%';
+
+    if (roiStatusPill) {
+      if (benefitCostRatio >= 2.0 && eligibleUnits >= hurdleUnits) {
+        roiStatusPill.textContent = 'PASSES 2x HURDLE';
+        roiStatusPill.className = 'gt-roi-status-badge';
+      } else {
+        roiStatusPill.textContent = 'BELOW 2x THRESHOLD';
+        roiStatusPill.className = 'gt-roi-status-badge below-hurdle';
+      }
+    }
+
     // Verdict evaluation
     if (benefitCostRatio >= 2.0 && eligibleUnits >= hurdleUnits) {
       verdictTitle.className = 'gt-verdict-title verdict-justified';
@@ -288,4 +317,60 @@ function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
+}
+
+// ---------- 4. Engine Console Interactive Telemetry ----------
+function initEngineConsole() {
+  const tabs = document.querySelectorAll('.gt-console-tab');
+  const badgeText = document.getElementById('telemetry-badge-text');
+  const logText = document.getElementById('telemetry-log-text');
+  const nodeShopify = document.getElementById('node-shopify');
+  const nodeMeta = document.getElementById('node-meta');
+  const nodeCourier = document.getElementById('node-courier');
+  const nodeBank = document.getElementById('node-bank');
+
+  if (!tabs.length) return;
+
+  const scenarios = {
+    ndr: {
+      badge: 'NDR Interception Active',
+      log: 'Order #48291 · Buyer confirmed landmark · 4 PM carrier cutoff beat',
+      activeNodes: [nodeShopify, nodeCourier]
+    },
+    cod: {
+      badge: 'Fake COD Shield Active',
+      log: 'Order #48302 · Suspicious PIN code auto-held · Buyer verified via WhatsApp',
+      activeNodes: [nodeShopify, nodeCourier]
+    },
+    recon: {
+      badge: 'Margin Reconciliation Closed',
+      log: 'Shopify ₹4.8L GMV matched to RazorpayX bank settlement · 0 weight discrepancy',
+      activeNodes: [nodeShopify, nodeMeta, nodeBank]
+    }
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const scenarioKey = tab.getAttribute('data-scenario');
+      const sc = scenarios[scenarioKey];
+      if (!sc) return;
+
+      if (badgeText) badgeText.textContent = sc.badge;
+      if (logText) logText.textContent = sc.log;
+
+      [nodeShopify, nodeMeta, nodeCourier, nodeBank].forEach((n) => {
+        if (n) n.classList.remove('active');
+      });
+      sc.activeNodes.forEach((n) => {
+        if (n) n.classList.add('active');
+      });
+    });
+  });
 }

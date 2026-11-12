@@ -1,6 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#021a0d"/>
-  <rect x="2" y="2" width="60" height="60" rx="14" stroke="#baf915" stroke-width="2" stroke-opacity="0.3"/>
-  <path d="M42 22C39.5 19.5 36 18 32 18C24.268 18 18 24.268 18 32C18 39.732 24.268 46 32 46C36 46 39.5 44.5 42 42" stroke="#fafafa" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="43" cy="23" r="4.5" fill="#baf915" />
+  <!-- Container Ground -->
+  <rect width="64" height="64" rx="16" fill="#021A0D" />
+  <rect x="0.5" y="0.5" width="63" height="63" rx="15.5" stroke="rgba(186, 249, 21, 0.25)" stroke-width="1" />
+  
+  <!-- Emblem Centerpiece -->
+  <g transform="translate(13, 11)">
+    <!-- Outer Pearl-White Shield Perimeter -->
+    <path d="M19 4 L31 11 V28 L19 35 L7 28 V18" 
+          stroke="#FAFDF7" 
+          stroke-width="3.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+    
+    <!-- Inner Closed Routing Loop in Electric Lime -->
+    <path d="M7 18 L19 25 L31 18 L19 11 L11 16" 
+          stroke="#BAF915" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+          
+    <!-- Core Nexus Node -->
+    <circle cx="19" cy="18" r="3" fill="#BAF915" />
+  </g>
 </svg>

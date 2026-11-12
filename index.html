@@ -191,7 +191,7 @@
   <header class="gt-header" role="banner">
     <div class="gt-container gt-header__inner">
       <a href="/" class="gt-logo-link" aria-label="Coverdo home">
-        <img src="assets/coverdo-logo.svg" alt="Coverdo Wordmark" width="160" height="36">
+        <img src="assets/coverdo-logo.svg" alt="Coverdo Wordmark" width="170" height="34">
       </a>
 
       <nav class="gt-header__nav" aria-label="Primary navigation">
@@ -238,12 +238,98 @@
             </div>
           </div>
 
-          <!-- Right Hero Media Card -->
-          <div class="gt-hero__photo-card" data-reveal>
-            <img src="assets/great-northern-freight-warehouse-and-depot-nrhp.jpg"
-                 alt="Great Northern freight warehouse and depot hub"
-                 width="1200" height="700"
-                 fetchpriority="high">
+          <!-- Right Hero Interactive Operational Engine Console -->
+          <div class="gt-hero__console-card" data-reveal>
+            <div class="gt-engine-console" data-ui>
+              <!-- Console Titlebar -->
+              <div class="gt-console-topbar">
+                <div class="gt-console-dots">
+                  <span class="d-red"></span>
+                  <span class="d-yellow"></span>
+                  <span class="d-green"></span>
+                </div>
+                <div class="gt-console-label">
+                  <span>COVERDO RESOLUTION ENGINE</span>
+                  <span class="gt-live-badge"><span class="gt-live-dot"></span> 99.4% SLA</span>
+                </div>
+              </div>
+
+              <!-- Console Core Interactive Body -->
+              <div class="gt-console-body">
+                <!-- Source Tier -->
+                <div class="gt-node-tier">
+                  <div class="gt-tier-label">DATA SOURCES</div>
+                  <div class="gt-node-card active" id="node-shopify">
+                    <div class="gt-node-header">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                      <span class="gt-node-name">Shopify Store API</span>
+                    </div>
+                    <div class="gt-node-stat nums">4,820 orders/mo synced</div>
+                  </div>
+                  <div class="gt-node-card" id="node-meta">
+                    <div class="gt-node-header">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                      <span class="gt-node-name">Meta Ad Spend</span>
+                    </div>
+                    <div class="gt-node-stat nums">₹4.2L blended spend</div>
+                  </div>
+                </div>
+
+                <!-- Center Coverdo Neural Bridge -->
+                <div class="gt-engine-bridge">
+                  <div class="gt-hub-emblem-wrap">
+                    <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+                      <circle cx="32" cy="32" r="28" stroke="rgba(186, 249, 21, 0.2)" stroke-width="2"/>
+                      <path d="M32 16 L44 23 V40 L32 47 L20 40 V30" stroke="#FAFDF7" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M20 30 L32 37 L44 30 L32 23 L24 28" stroke="#BAF915" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="32" cy="30" r="3" fill="#BAF915"/>
+                    </svg>
+                    <span class="gt-hub-ping"></span>
+                  </div>
+                  <div class="gt-bridge-telemetry" id="console-telemetry-text">
+                    <div class="gt-telemetry-pill">
+                      <span class="pill-dot"></span>
+                      <span id="telemetry-badge-text">NDR Interception Active</span>
+                    </div>
+                    <div class="gt-telemetry-log nums" id="telemetry-log-text">
+                      Order #48291 · Buyer confirmed landmark · 4 PM carrier cutoff beat
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Execution Tier -->
+                <div class="gt-node-tier">
+                  <div class="gt-tier-label">DISPATCH &amp; SETTLEMENT</div>
+                  <div class="gt-node-card active" id="node-courier">
+                    <div class="gt-node-header">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                      <span class="gt-node-name">Couriers &amp; ClickPost</span>
+                    </div>
+                    <div class="gt-node-stat nums">+8.2% NDR recovered</div>
+                  </div>
+                  <div class="gt-node-card active" id="node-bank">
+                    <div class="gt-node-header">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/><line x1="4" y1="10" x2="4" y2="21"/><line x1="20" y1="10" x2="20" y2="21"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"/></svg>
+                      <span class="gt-node-name">Bank Remittances</span>
+                    </div>
+                    <div class="gt-node-stat nums">100% matched to cash</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Scenario Controls -->
+              <div class="gt-console-tabs" role="tablist" aria-label="Console scenarios">
+                <button type="button" class="gt-console-tab active" data-scenario="ndr" role="tab" aria-selected="true">
+                  <span>1. NDR Intercept</span>
+                </button>
+                <button type="button" class="gt-console-tab" data-scenario="cod" role="tab" aria-selected="false">
+                  <span>2. Fake COD Shield</span>
+                </button>
+                <button type="button" class="gt-console-tab" data-scenario="recon" role="tab" aria-selected="false">
+                  <span>3. Cash Reconcile</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -345,6 +431,25 @@
               <p>
                 Over 20% of COD shipments fail on the first delivery attempt. Customers answer automated WhatsApp templates, but instructions stall in queues while courier cutoffs expire. Parcels return to origin while customer and courier wait in disconnected queues.
               </p>
+              <!-- Live Resolution Stepper Widget -->
+              <div class="gt-bento-widget gt-chat-widget" data-ui>
+                <div class="gt-chat-bubble carrier">
+                  <span class="chat-who">Delhivery (11:15 AM)</span>
+                  <span class="chat-text">Exception: Address incomplete · Landmark missing</span>
+                </div>
+                <div class="gt-chat-bubble coverdo">
+                  <span class="chat-who">Coverdo WhatsApp Engine</span>
+                  <span class="chat-text">"Hi Rohit! Driver nearby. Please confirm nearby landmark or gate."</span>
+                </div>
+                <div class="gt-chat-bubble buyer">
+                  <span class="chat-who">Buyer WhatsApp (11:22 AM)</span>
+                  <span class="chat-text">"Behind Apollo Pharmacy, Gate #2"</span>
+                </div>
+                <div class="gt-chat-success">
+                  <span class="success-dot"></span>
+                  <span>Reattempt Updated in Delhivery at 11:30 AM · 4 PM Cutoff Beat · Delivered</span>
+                </div>
+              </div>
             </div>
             <div class="gt-tool-chain">
               <span class="gt-tool-tag">Shopify</span>
@@ -363,6 +468,22 @@
               <p>
                 Stores either ship unverified orders blindly to incomplete addresses, or apply blanket rules that reject genuine buyers. High return freight burns margin while good customers are falsely cancelled.
               </p>
+              <!-- Risk Confidence Scoring Widget -->
+              <div class="gt-bento-widget gt-fraud-widget" data-ui>
+                <div class="gt-meter-row">
+                  <span class="meter-name">Address Integrity Risk</span>
+                  <span class="meter-score-badge high nums">89/100 · High RTO Risk</span>
+                </div>
+                <div class="gt-meter-detail">
+                  <span>Signal: House #12, No Area Landmark, Disconnected Phone History</span>
+                </div>
+                <div class="gt-meter-action">
+                  <svg class="action-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>Auto-Hold before dispatch · 1-Tap Buyer Verification · Saved ₹280 freight</span>
+                </div>
+              </div>
             </div>
             <div class="gt-tool-chain">
               <span class="gt-tool-tag">Warehouse ERP</span>
@@ -517,6 +638,34 @@
                 <h4>Net benefit</h4>
                 <div id="out-net-benefit" class="gt-card-val nums val-positive">+₹68,000/mo</div>
                 <span class="sub-note">Net bottom-line contribution after all fees</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Capital ROI Comparison Bar (Aceternity / Linear Style) -->
+            <div class="gt-roi-comparison" data-ui>
+              <div class="gt-roi-header">
+                <span class="gt-roi-label">Capital Outcome Visualizer</span>
+                <span id="roi-status-pill" class="gt-roi-status-badge">PASSES 2x HURDLE</span>
+              </div>
+              <div class="gt-roi-chart">
+                <div class="gt-roi-row">
+                  <div class="gt-roi-bar-meta">
+                    <span class="gt-roi-bar-name">Status Quo Bleed (Lost Freight &amp; Inventory)</span>
+                    <span id="chart-bleed-val" class="nums">₹1,32,000/mo</span>
+                  </div>
+                  <div class="gt-roi-track">
+                    <div id="chart-bleed-bar" class="gt-roi-fill bleed-fill" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <div class="gt-roi-row">
+                  <div class="gt-roi-bar-meta">
+                    <span class="gt-roi-bar-name">Net Margin Recovered with Coverdo</span>
+                    <span id="chart-gain-val" class="nums val-accent">+₹68,000/mo</span>
+                  </div>
+                  <div class="gt-roi-track">
+                    <div id="chart-gain-bar" class="gt-roi-fill gain-fill" style="width: 88%;"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1025,7 +1174,7 @@
       <div class="gt-footer__top">
         <div class="gt-footer-brand">
           <a href="/" class="gt-logo-link" aria-label="Coverdo home">
-            <img src="assets/coverdo-logo.svg" alt="Coverdo Wordmark" width="160" height="36">
+            <img src="assets/coverdo-logo.svg" alt="Coverdo Wordmark" width="170" height="34">
           </a>
           <p>
             Operational execution partner for Indian direct-to-consumer ecommerce brands. Owning the complete outcome between disconnected software tools and fulfillment pipelines.
