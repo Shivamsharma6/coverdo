@@ -26,6 +26,22 @@ module.exports = async function handler(req, res) {
 
     const timestampIST = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
+    const emailHtml = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
+        <h2 style="color: #021a0d; margin-top: 0;">New Store Evaluation Request</h2>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+          <tr><td style="padding: 8px 0; color: #6b7280; width: 140px;">Store Domain:</td><td style="padding: 8px 0; font-weight: 600; color: #111827;">${domain}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">User Role:</td><td style="padding: 8px 0; color: #111827;">${role || 'Founder / Operator'}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Monthly Volume:</td><td style="padding: 8px 0; color: #111827;">${volume || 'Not specified'}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Business Contact:</td><td style="padding: 8px 0; font-weight: 600; color: #059669;">${contact}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Submitted At:</td><td style="padding: 8px 0; color: #111827;">${timestampIST} (IST)</td></tr>
+        </table>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #9ca3af;">
+          Dispatched by Coverdo Production Pipeline · SLA: 30 business minutes
+        </div>
+      </div>
+    `;
+
     // Method 1: Direct authenticated SMTP if SMTP_PASS is configured in Vercel env
     if (process.env.SMTP_PASS) {
       try {
@@ -48,21 +64,7 @@ module.exports = async function handler(req, res) {
           to: 'growth@coverdo.in',
           replyTo: contact.includes('@') ? contact : undefined,
           subject: `[Coverdo Evaluation] ${domain} (${volume || 'New Lead'})`,
-          html: `
-            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
-              <h2 style="color: #021a0d; margin-top: 0;">New Store Evaluation Request</h2>
-              <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
-                <tr><td style="padding: 8px 0; color: #6b7280; width: 140px;">Store Domain:</td><td style="padding: 8px 0; font-weight: 600; color: #111827;">${domain}</td></tr>
-                <tr><td style="padding: 8px 0; color: #6b7280;">User Role:</td><td style="padding: 8px 0; color: #111827;">${role || 'Founder / Operator'}</td></tr>
-                <tr><td style="padding: 8px 0; color: #6b7280;">Monthly Volume:</td><td style="padding: 8px 0; color: #111827;">${volume || 'Not specified'}</td></tr>
-                <tr><td style="padding: 8px 0; color: #6b7280;">Business Contact:</td><td style="padding: 8px 0; font-weight: 600; color: #059669;">${contact}</td></tr>
-                <tr><td style="padding: 8px 0; color: #6b7280;">Submitted At:</td><td style="padding: 8px 0; color: #111827;">${timestampIST} (IST)</td></tr>
-              </table>
-              <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #9ca3af;">
-                Dispatched by Coverdo Production Pipeline · SLA: 30 business minutes
-              </div>
-            </div>
-          `
+          html: emailHtml
         });
 
         return res.status(200).json({
@@ -71,7 +73,40 @@ module.exports = async function handler(req, res) {
           message: 'Evaluation request dispatched to growth@coverdo.in'
         });
       } catch (smtpErr) {
-        console.error('SMTP dispatch failed, falling back to FormSubmit relay:', smtpErr);
+        console.error('SMTP dispatch failed:', smtpErr);
+      }
+    }
+
+    // Method 2: Resend API if RESEND_API_KEY is configured
+    if (process.env.RESEND_API_KEY) {
+      try {
+        const resendRes = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: process.env.RESEND_FROM || 'Coverdo <onboarding@resend.dev>',
+            to: ['growth@coverdo.in'],
+            reply_to: contact.includes('@') ? contact : undefined,
+            subject: `[Coverdo Evaluation] ${domain} (${volume || 'New Lead'})`,
+            html: emailHtml
+          })
+        });
+
+        const resendData = await resendRes.json().catch(() => ({}));
+
+        if (resendRes.ok) {
+          return res.status(200).json({
+            success: true,
+            method: 'resend',
+            message: 'Evaluation request dispatched to growth@coverdo.in',
+            details: resendData
+          });
+        }
+      } catch (resendErr) {
+        console.error('Resend dispatch failed:', resendErr);
       }
     }
 
