@@ -1,0 +1,220 @@
+{
+  "brand": "Coverdo",
+  "email": "growth@coverdo.in",
+  "pricingStatus": "Indicative fees. Final fees are fixed in your proposal after a scope review.",
+  "source": "research/reachwise-build-pack/02-offers-and-competitor-pricing.md",
+  "services": [
+    {
+      "id": "delivery-exceptions",
+      "category": "operations",
+      "name": "Delivery Exception Resolution",
+      "short": "Turn a failed attempt into an owned next action.",
+      "scope": "One store, one logistics connector and three agreed NDR reasons. Customer-response routing, carrier acknowledgement tracking and an owner queue.",
+      "setup": [
+        50000,
+        90000
+      ],
+      "monthly": [
+        20000,
+        35000
+      ],
+      "recurring": "Optional monitoring and improvement; human calling labour separately scoped.",
+      "excludes": "Courier delivery is not guaranteed. Messaging, courier/API charges and calling labour are additional.",
+      "deliverable": "Connected response journey, exception queue, carrier handoff record and mature-outcome report."
+    },
+    {
+      "id": "checkout-recovery",
+      "category": "growth",
+      "name": "Checkout Conversation Recovery",
+      "short": "Answer the question behind an abandoned checkout.",
+      "scope": "One store, one channel, one defined checkout journey and three objection categories, with purchase suppression and measurement.",
+      "setup": [
+        35000,
+        60000
+      ],
+      "monthly": [
+        15000,
+        25000
+      ],
+      "recurring": "Optional named tuning and review work.",
+      "excludes": "Platform and message usage are additional. Discounts and commercial claims require your approval.",
+      "deliverable": "Approved answer journey, human handoff, purchase stop rules and measurement plan."
+    },
+    {
+      "id": "support-assistant",
+      "category": "operations",
+      "name": "Support Resolution Assistant",
+      "short": "Give support the right context and a safe handoff.",
+      "scope": "One store, one helpdesk or channel and three approved intents, with identity checks and transfer to a human.",
+      "setup": [
+        45000,
+        80000
+      ],
+      "monthly": [
+        15000,
+        30000
+      ],
+      "recurring": "Optional quality review, content upkeep and agreed incident ownership.",
+      "excludes": "Helpdesk, platform and usage fees are additional. Refund or cancellation authority is agreed explicitly.",
+      "deliverable": "Approved intent library, verified lookup flow, escalation rules and quality checklist."
+    },
+    {
+      "id": "contribution-reporting",
+      "category": "systems",
+      "name": "Operational Contribution Reporting",
+      "short": "Understand what remains after the order is settled.",
+      "scope": "Up to four agreed sources, one reconciled order model, one decision view, daily refresh and documented metric definitions.",
+      "setup": [
+        60000,
+        100000
+      ],
+      "monthly": [
+        20000,
+        35000
+      ],
+      "recurring": "Optional reconciliation and action review; dashboard access alone is not a retainer.",
+      "excludes": "Source cleanup beyond scope, software and paid data access are additional. Booked sales are not bank cash.",
+      "deliverable": "Reconciled contribution view, discrepancy queue, definitions and refresh runbook."
+    },
+    {
+      "id": "creative-sprint",
+      "category": "growth",
+      "name": "Creative Launch Sprint",
+      "short": "One offer. A coherent creative test. Ready to launch.",
+      "scope": "One offer brief, one direction and three message hypotheses; three short supplied-footage edits, six statics, hooks and copy, two consolidated revision rounds, launch sheet and rights register.",
+      "setup": [
+        33000,
+        33000
+      ],
+      "monthly": null,
+      "recurring": "One-time sprint. Each new batch is a new scope.",
+      "excludes": "Filming, actors, media buying and guaranteed ROAS are excluded. You supply usable, licensed assets.",
+      "deliverable": "Nine final assets, accompanying copy, test sheet and asset register. Delivery window: 10–15 working days after approved inputs, confirmed in your proposal."
+    },
+    {
+      "id": "ads-management",
+      "category": "growth",
+      "name": "One-channel Ads Management",
+      "short": "A defined campaign and testing workload, actively managed.",
+      "scope": "One ad account and one channel, with campaign and creative-testing responsibilities agreed in advance.",
+      "setup": null,
+      "monthly": [
+        25000,
+        40000
+      ],
+      "recurring": "Ongoing management service. Onboarding is quoted if needed.",
+      "excludes": "Ad spend is additional. New creative production, extra channels and onboarding are separately scoped.",
+      "deliverable": "Agreed campaign setup, testing workload and reporting responsibilities."
+    },
+    {
+      "id": "landing-page",
+      "category": "growth",
+      "name": "Product / Offer Landing Page",
+      "short": "Give one offer a clear route to conversion.",
+      "scope": "One page using supplied product assets, agreed analytics and one conversion path.",
+      "setup": [
+        30000,
+        60000
+      ],
+      "monthly": null,
+      "recurring": "Maintenance and experimentation only if specified.",
+      "excludes": "Hosting, paid tools, extra pages and additional content production are separately scoped.",
+      "deliverable": "One responsive offer page, agreed tracking and a tested conversion path."
+    },
+    {
+      "id": "retention",
+      "category": "growth",
+      "name": "Retention Journey",
+      "short": "A relevant next conversation with the right customer cohort.",
+      "scope": "One defined replenishment or lapsed-customer cohort, one channel, exclusions and holdout measurement.",
+      "setup": [
+        35000,
+        60000
+      ],
+      "monthly": [
+        20000,
+        30000
+      ],
+      "recurring": "Optional cohort and offer operations.",
+      "excludes": "Platform, messaging, discounts and additional cohorts are extra unless included in the proposal.",
+      "deliverable": "Cohort definition, exclusion rules, approved journey and holdout measurement plan."
+    },
+    {
+      "id": "loyalty",
+      "category": "growth",
+      "name": "Loyalty Programme",
+      "short": "Make rewards useful, explainable and reversible.",
+      "scope": "One rewards model in an existing selected platform, with accrual, redemption, refund reversal and reporting rules.",
+      "setup": [
+        40000,
+        75000
+      ],
+      "monthly": null,
+      "recurring": "Programme operation is separately quoted.",
+      "excludes": "Platform fees, reward funding and ongoing programme operation are additional.",
+      "deliverable": "Configured rewards model, tested refund reversals and programme reporting."
+    },
+    {
+      "id": "integration",
+      "category": "systems",
+      "name": "One-process Integration",
+      "short": "Connect two systems around one complete business process.",
+      "scope": "One business process across two systems, including an error queue, reconciliation and owner handoff.",
+      "setup": [
+        30000,
+        70000
+      ],
+      "monthly": null,
+      "recurring": "Optional monitoring quoted for agreed coverage and incident load.",
+      "excludes": "Paid APIs, unusual migrations and additional processes are separately scoped.",
+      "deliverable": "Working integration, error and reconciliation checks, and an owner runbook."
+    },
+    {
+      "id": "voice-agent",
+      "category": "systems",
+      "name": "One-purpose Voice Agent",
+      "short": "One calling use case, with a clear route to a person.",
+      "scope": "One use case, one language, one telephony provider, one business-system action and a human handoff.",
+      "setup": [
+        60000,
+        100000
+      ],
+      "monthly": [
+        20000,
+        35000
+      ],
+      "recurring": "Optional managed operation; usage is additional.",
+      "excludes": "Telephony, model and call usage are extra. Additional languages and use cases require a new scope.",
+      "deliverable": "Approved call flow, bounded system action, transfer rules and operating runbook."
+    },
+    {
+      "id": "feedback",
+      "category": "operations",
+      "name": "Feedback-to-Resolution",
+      "short": "Turn customer feedback into an accountable follow-through.",
+      "scope": "One post-resolution feedback flow, issue routing, owner deadlines and a theme report.",
+      "setup": [
+        30000,
+        50000
+      ],
+      "monthly": null,
+      "recurring": "Optional review and triage operation is separately quoted.",
+      "excludes": "Survey, platform and messaging costs are additional. Ongoing triage requires explicit coverage.",
+      "deliverable": "Feedback journey, issue queue, named deadlines and recurring-theme report."
+    }
+  ],
+  "discovery": [
+    {
+      "name": "Pre-dispatch COD confirmation",
+      "description": "Evaluate confirmation and intervention rules using your existing first-party signals, including the risk of rejecting genuine buyers. Scope and fee follow a data review."
+    },
+    {
+      "name": "Refund and COD settlement visibility",
+      "description": "Explore refund references, payment states and settlement exceptions across your existing tools. A bounded reporting or integration scope is quoted after discovery."
+    },
+    {
+      "name": "Freight, returns and marketplace exceptions",
+      "description": "Review evidence capture, return closure or reconciliation where a specific gap remains. These are discovery-led extensions, with feasibility and price agreed individually."
+    }
+  ]
+}
