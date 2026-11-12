@@ -42,39 +42,58 @@ module.exports = async function handler(req, res) {
       </div>
     `;
 
-    // Method 1: Direct authenticated SMTP if SMTP_PASS is configured in Vercel env
+    // Method 1: Direct authenticated GoDaddy SMTP if SMTP_PASS is configured in Vercel env
     if (process.env.SMTP_PASS) {
-      try {
-        const smtpHost = process.env.SMTP_HOST || 'smtpout.secureserver.net';
-        const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10);
-        const smtpUser = process.env.SMTP_USER || 'growth@coverdo.in';
+      const smtpHost = (process.env.SMTP_HOST || 'smtpout.secureserver.net').trim();
+      const smtpUser = (process.env.SMTP_USER || 'growth@coverdo.in').trim();
+      const smtpPass = process.env.SMTP_PASS.trim();
+      const preferredPort = parseInt(process.env.SMTP_PORT || '465', 10);
 
-        const transporter = nodemailer.createTransport({
-          host: smtpHost,
-          port: smtpPort,
-          secure: smtpPort === 465,
-          auth: {
-            user: smtpUser,
-            pass: process.env.SMTP_PASS
-          }
-        });
+      // Attempt primary port (465 SSL), with 587 TLS fallback
+      const portsToTry = preferredPort === 465 ? [465, 587] : [preferredPort, 465];
+      let lastSmtpError = null;
 
-        await transporter.sendMail({
-          from: `"Coverdo Intake" <${smtpUser}>`,
-          to: 'growth@coverdo.in',
-          replyTo: contact.includes('@') ? contact : undefined,
-          subject: `[Coverdo Evaluation] ${domain} (${volume || 'New Lead'})`,
-          html: emailHtml
-        });
+      for (const port of portsToTry) {
+        try {
+          const transporter = nodemailer.createTransport({
+            host: smtpHost,
+            port: port,
+            secure: port === 465,
+            auth: {
+              user: smtpUser,
+              pass: smtpPass
+            },
+            connectionTimeout: 8000,
+            greetingTimeout: 5000,
+            socketTimeout: 10000
+          });
 
-        return res.status(200).json({
-          success: true,
-          method: 'smtp',
-          message: 'Evaluation request dispatched to growth@coverdo.in'
-        });
-      } catch (smtpErr) {
-        console.error('SMTP dispatch failed:', smtpErr);
+          await transporter.sendMail({
+            from: `"Coverdo Intake" <${smtpUser}>`,
+            to: 'growth@coverdo.in',
+            replyTo: contact.includes('@') ? contact : undefined,
+            subject: `[Coverdo Evaluation] ${domain} (${volume || 'New Lead'})`,
+            html: emailHtml
+          });
+
+          return res.status(200).json({
+            success: true,
+            method: 'smtp',
+            port: port,
+            message: 'Evaluation request dispatched directly to growth@coverdo.in via GoDaddy SMTP'
+          });
+        } catch (err) {
+          lastSmtpError = err;
+          console.warn(`GoDaddy SMTP port ${port} attempt failed:`, err.message);
+        }
       }
+
+      console.error('All GoDaddy SMTP ports failed:', lastSmtpError);
+      return res.status(500).json({
+        success: false,
+        error: `GoDaddy SMTP error: ${lastSmtpError?.message || 'Authentication or connection failed'}. Please verify SMTP_PASS in Vercel.`,
+        mailto: 'mailto:growth@coverdo.in?subject=Coverdo%20Evaluation%20Request'
+      });
     }
 
     // Method 2: Resend API if RESEND_API_KEY is configured
